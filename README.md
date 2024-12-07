@@ -26,8 +26,6 @@ that's all
 
 ---
 
-install inetutils if missing hostname command.
-
 ## Screen shot
 
 ![screen shot](image.png)
