@@ -13,7 +13,7 @@ enabled = true
 [[d1_databases]]
 binding = "DB"
 database_name = "probe"
-database_id = "58d879f3-4c75-423e-8f0d-d5692a998aff"
+database_id = "2bb7c388-b292-406d-8b65-33d988f70ff9"
 # Automatically place your workloads in an optimal location to minimize latency.
 # If you are running back-end logic in a Worker, running it closer to your back-end infrastructure
 # rather than the end user may result in better performance.
