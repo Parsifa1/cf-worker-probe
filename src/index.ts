@@ -1,31 +1,21 @@
-/**
- * Welcome to Cloudflare Workers! This is your first worker.
- *
- * - Run `npm run dev` in your terminal to start a development server
- * - Open a browser tab at http://localhost:8787/ to see your worker in action
- * - Run `npm run deploy` to publish your worker
- *
- * Bind resources to your worker in `wrangler.toml`. After adding bindings, a type definition for the
- * `Env` object can be regenerated with `npm run cf-typegen`.
- *
- * Learn more at https://developers.cloudflare.com/workers/
- */
-
 export default {
 	async fetch(request: Request, env: Env) {
-		if (request.method === 'OPTIONS') {
-			return handleCORS();
+		const url = new URL(request.url);
+
+		if (url.pathname === '/api' || url.pathname === '/api/') {
+			if (request.method === 'OPTIONS') {
+				return handleCORS();
+			}
+			if (request.method === 'GET') {
+				return await handleGet(request, env);
+			}
+			if (request.method === 'POST') {
+				return await handlePost(request, env);
+			}
+			return new Response('Method not allowed', { status: 405 });
 		}
 
-		if (request.method === 'GET') {
-			return await handleGet(request, env);
-		}
-
-		if (request.method === 'POST') {
-			return await handlePost(request, env);
-		}
-
-		return new Response('Method not allowed', { status: 405 });
+		return env.ASSETS.fetch(request);
 	},
 } satisfies ExportedHandler<Env>;
 

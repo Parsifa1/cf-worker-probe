@@ -1,33 +1,28 @@
 # cf-worker-probe
 
-Serverless vps probe for your server. Based on cloudflare worker && d1 && page, no-deps. Easy to deploy.
+Serverless VPS probe for your server. Based on Cloudflare Worker with Static Assets + D1. Single deployment, no-deps.
 
 ## Usage
 
-first deploy the worker && set the db.
-
-### dashboard/index.html
-
-```js
-const WORKER_URL = 'YOUR_WORKER_URL';
-```
-
-deploy the dashboard to cloudflare page(just drag and drop)
-
-### client.sh
+### 1. Deploy
 
 ```sh
-WORKER_URL="HERE_YOUR_WORKER_URL"
+wrangler d1 execute probe --file=schema.sql
+wrangler deploy
 ```
 
-run client.sh on your vps, you can make a systemd service if you want.
+### 2. Configure client.sh
 
-that's all
+```sh
+WORKER_URL="https://your-worker.workers.dev/api"
+```
+
+Run on your VPS. Create a systemd service for persistence.
 
 ---
 
-install inetutils if missing hostname command.
+Install inetutils if missing hostname command.
 
-## Screen shot
+## Screenshot
 
-![screen shot](image.png)
+![screenshot](image.png)

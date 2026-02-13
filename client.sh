@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eux -o pipefail
 # configure the following variables
-WORKER_URL="HERE_YOUR_WORKER_URL"  # Worker URL
+WORKER_URL="HERE_YOUR_WORKER_URL/api"  # Worker URL (append /api to your worker domain)
 HOSTNAME=$(hostname)
 INTERVAL=60  # interval in seconds
 
